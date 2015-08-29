@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bani.toerstbar"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="21" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/toerst_icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name="com.bani.toerstbar.menu.MenuCategories"
+            android:label="Menu Categories">
+            <intent-filter>
+                <action android:name="com.bani.toerstbar.menu.MENUCATEGORIES" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name="com.bani.toerstbar.menu.MultipleDrinksView"
+            android:label="Multiple Drinks View">
+            <intent-filter>
+                <action android:name="com.bani.toerstbar.menu.MULTIPLEDRINKS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name="com.bani.toerstbar.menu.SingleDrinkView"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.bani.toerstbar.menu.SINGLEDRINK" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name="com.bani.toerstbar.reserve.BookTable"
+            android:label="Book a Table"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.bani.toerstbar.reserve.BOOKTABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name="com.bani.toerstbar.reserve.PickArea"
+            android:label="Preferred Area"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.bani.toerstbar.reserve.PICK_AREA" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name="com.bani.toerstbar.reserve.NumGuests"
+            android:label="Number of Guests"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.bani.toerstbar.reserve.NUM_GUESTS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name="com.bani.toerstbar.reserve.PickDate"
+            android:label="Pick a Date"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.bani.toerstbar.reserve.PICK_DATE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name="com.bani.toerstbar.reserve.PickTime"
+            android:label="Choose Time"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.bani.toerstbar.reserve.PICK_TIME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name="com.bani.toerstbar.reserve.NameComments"
+            android:label="Some additional info"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.bani.toerstbar.reserve.NAME_COMMENTS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name="com.bani.toerstbar.popups.NoNameEntered"
+            android:label="Missing Name"
+            android:theme="@android:style/Theme.Dialog"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.bani.toerstbar.popups.MISSING_NAME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name="com.bani.toerstbar.reserve.FinishReserve"
+            android:label="Finish Reservation"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.bani.toerstbar.reserve.FINISH_RESERVE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
