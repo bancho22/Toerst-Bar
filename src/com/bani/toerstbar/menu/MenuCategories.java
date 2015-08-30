@@ -6,6 +6,7 @@ import com.bani.toerstbar.R;
 import com.bani.toerstbar.R.drawable;
 import com.bani.toerstbar.R.layout;
 
+import db.DataAdapter;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -28,13 +29,19 @@ public class MenuCategories extends ListActivity {
 	
 	private void init() {
 		categories = new ArrayList<String>();
-		categories.add("Fadøl");
-		categories.add("Flaskeøl");
-		categories.add("Kæmpe Cocktails");
+//		categories.add("Fadøl");
+//		categories.add("Flaskeøl");
+//		categories.add("Kæmpe Cocktails");
+//		
+//		for (int i = 4; i < 20; i++){
+//			categories.add("category " + i);
+//		}
 		
-		for (int i = 4; i < 20; i++){
-			categories.add("category " + i);
-		}
+		DataAdapter data = new DataAdapter(this);
+		data.createDatabase();
+		data.open();
+		categories = data.getTestData();
+		data.close();
 		
 		getListView().setBackgroundResource(R.drawable.wood);
 		setListAdapter(new ArrayAdapter<String>(MenuCategories.this, R.layout.my_text_for_list_activity, categories));
