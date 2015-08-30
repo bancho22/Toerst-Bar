@@ -1,4 +1,4 @@
-package entity;
+package com.bani.toerstbar.entity;
 
 import java.util.ArrayList;
 
@@ -21,6 +21,7 @@ public class Drink {
 		this.price = price;
 		this.ings = ings;
 	}
+	
 	public int getId() {
 		return id;
 	}

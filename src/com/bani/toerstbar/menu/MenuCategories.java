@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import com.bani.toerstbar.R;
 import com.bani.toerstbar.R.drawable;
 import com.bani.toerstbar.R.layout;
+import com.bani.toerstbar.db.DataAdapter;
 
-import db.DataAdapter;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -40,7 +40,7 @@ public class MenuCategories extends ListActivity {
 		DataAdapter data = new DataAdapter(this);
 		data.createDatabase();
 		data.open();
-		categories = data.getTestData();
+		categories = data.getCategories();
 		data.close();
 		
 		getListView().setBackgroundResource(R.drawable.wood);

@@ -1,4 +1,4 @@
-package entity;
+package com.bani.toerstbar.entity;
 
 public class Ingredient {
 
