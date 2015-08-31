@@ -99,6 +99,29 @@ public class DataAdapter {
 	}
 	
 	
+	public Drink getSingleDrink(String drinkName){
+		try{
+			Drink d = new Drink();
+			
+			String sql = "SELECT * FROM Drink WHERE DrinkName = '" + drinkName + "'";
+			Cursor mCur = mDb.rawQuery(sql, null);
+			
+			if(mCur != null && mCur.moveToFirst()){
+				int id = mCur.getInt(mCur.getColumnIndex("_id"));
+				String category = mCur.getString(mCur.getColumnIndex("Category"));
+				int price = mCur.getInt(mCur.getColumnIndex("Price"));
+				ArrayList<Ingredient> ings = getDrinkIngredients(id);
+				
+				return new Drink(id, drinkName, category, price, ings);
+			}
+			
+			return d;
+		}catch(SQLException mSQLException){
+			Log.e(TAG, "getSingleDrink >>" + mSQLException.toString());
+			throw mSQLException;
+		}
+	}
+	
 
 	private ArrayList<Ingredient> getDrinkIngredients(int drinkID) {
 		try {
@@ -108,9 +131,11 @@ public class DataAdapter {
 
 			Cursor mCur = mDb.rawQuery(sql, null);
 
-			if (mCur != null) {
+			if (mCur != null && mCur.moveToFirst()) {
+				int id = mCur.getInt(mCur.getColumnIndex("IngredientID"));
+				ings.add(findIngredientById(id));
 				while (mCur.moveToNext()) {
-					int id = mCur.getInt(mCur.getColumnIndex("IngredientID"));
+					id = mCur.getInt(mCur.getColumnIndex("IngredientID"));
 					ings.add(findIngredientById(id));
 				}
 			}
@@ -123,12 +148,12 @@ public class DataAdapter {
 
 	private Ingredient findIngredientById(int ingID) {
 		try {
-			String sql = "SELECT IngredientName FROM Ingredient WHERE IngredientID = '"
+			String sql = "SELECT IngName FROM Ingredient WHERE _id = '"
 					+ ingID + "'";
 			
 			Cursor mCur = mDb.rawQuery(sql, null);
 			
-			if(mCur != null){
+			if(mCur != null && mCur.moveToFirst()){
 				String ingName = mCur.getString(mCur.getColumnIndex("IngName"));
 				return new Ingredient(ingID, ingName);
 			}

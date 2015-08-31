@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import com.bani.toerstbar.R;
 import com.bani.toerstbar.R.id;
 import com.bani.toerstbar.R.layout;
+import com.bani.toerstbar.db.DataAdapter;
+import com.bani.toerstbar.entity.Drink;
+import com.bani.toerstbar.entity.Ingredient;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,12 +15,12 @@ import android.widget.TextView;
 
 public class SingleDrinkView extends Activity {
 
-	private String drink;
-	private String category;
+	private Drink drink;
 	private TextView drinkName;
-	private TextView ing;
+	private TextView ings;
 	private TextView price;
-	
+	private TextView ingTit;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,42 +30,31 @@ public class SingleDrinkView extends Activity {
 
 	private void init() {
 		drinkName = (TextView) findViewById(R.id.drinkName);
-		ing = (TextView) findViewById(R.id.ing);
+		ings = (TextView) findViewById(R.id.ings);
 		price = (TextView) findViewById(R.id.price);
-		
+		ingTit = (TextView) findViewById(R.id.TextViewI);
+
 		Bundle bundle = getIntent().getExtras();
-		category = bundle.getString("category");
-		drink = bundle.getString("drink");
-		String[] splitted = drink.split("\n");
-		drink = splitted[0];
-		String drinkPrice = splitted[1];
-		drinkName.setText(drink);
-		price.setText(drinkPrice);
-		ArrayList<String> ingredients = new ArrayList<String>();
-		if(category.contains("Cocktails")){
-			if(drink.contains("Long Island")){
-				ingredients.add("rom");
-				ingredients.add("vodka");
-				ingredients.add("gin");
-				ingredients.add("tequila");
-				ingredients.add("triple sec");
-				ingredients.add("lime");
-				ingredients.add("cola");
-			}else if(drink.contains("Special")){
-				ingredients.add("rom");
-				ingredients.add("vodka");
-				ingredients.add("gin");
-				ingredients.add("whiskey");
-				ingredients.add("lime");
-				ingredients.add("cola");
-			}
-			String ing_view_mode = "";
-			for (String s : ingredients){
-				ing_view_mode += s + ", ";
-			}
-			ing_view_mode = ing_view_mode.substring(0, ing_view_mode.length() - 2);
-			ing.setText(ing_view_mode);
+		String drinkName = bundle.getString("drinkName");
+		
+		DataAdapter data = new DataAdapter(this);
+		data.createDatabase();
+		data.open();
+		drink = data.getSingleDrink(drinkName);
+		data.close();
+		
+		setTitle(drink.getDrinkName());
+		
+		this.drinkName.setText(drink.getDrinkName());
+		String ings = "";
+		for (Ingredient i : drink.getIngs()) {
+			ings += "\u2022 " + i.getIngName() + "\n";
 		}
+		this.ings.setText(ings);
+		if(drink.getIngs().isEmpty()){
+			this.ings.setVisibility(TextView.GONE);
+			ingTit.setVisibility(TextView.GONE);
+		}
+		price.setText(drink.getPrice() + " kr.");
 	}
-	
 }

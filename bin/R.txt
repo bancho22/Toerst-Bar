@@ -243,6 +243,8 @@ int id TextView01 0x7f050042
 int id TextView02 0x7f05003f
 int id TextView03 0x7f05004a
 int id TextView04 0x7f05004c
+int id TextViewI 0x7f05005a
+int id TextViewP 0x7f05005c
 int id action_bar 0x7f05001c
 int id action_bar_activity_content 0x7f050015
 int id action_bar_container 0x7f05001b
@@ -254,7 +256,7 @@ int id action_context_bar 0x7f05001d
 int id action_menu_divider 0x7f050016
 int id action_menu_presenter 0x7f050017
 int id action_mode_close_button 0x7f050024
-int id action_settings 0x7f05005f
+int id action_settings 0x7f05005e
 int id activity_chooser_view_content 0x7f050025
 int id always 0x7f05000b
 int id area 0x7f050040
@@ -271,7 +273,7 @@ int id datePicker1 0x7f050057
 int id default_activity_button 0x7f050028
 int id dialog 0x7f05000e
 int id disableHome 0x7f050008
-int id drinkName 0x7f05005a
+int id drinkName 0x7f050046
 int id dropdown 0x7f05000f
 int id edit_query 0x7f050030
 int id end 0x7f050013
@@ -282,8 +284,7 @@ int id homeAsUp 0x7f050005
 int id icon 0x7f05002a
 int id ifRoom 0x7f05000a
 int id image 0x7f050027
-int id ing 0x7f05005d
-int id ingTitle 0x7f05005e
+int id ings 0x7f05005b
 int id listMode 0x7f050001
 int id list_item 0x7f050029
 int id middle 0x7f050012
@@ -294,7 +295,7 @@ int id none 0x7f050010
 int id normal 0x7f050000
 int id numGuests 0x7f050047
 int id picker 0x7f050052
-int id price 0x7f05005b
+int id price 0x7f05005d
 int id progressBar1 0x7f050045
 int id progress_circular 0x7f050018
 int id progress_horizontal 0x7f050019
@@ -322,10 +323,8 @@ int id split_action_bar 0x7f05001e
 int id submit_area 0x7f050039
 int id tabMode 0x7f050002
 int id test 0x7f050044
-int id textView1 0x7f050046
 int id textView2 0x7f050043
 int id textView22 0x7f050058
-int id textView4 0x7f05005c
 int id textViewSomeNumber 0x7f05004e
 int id time 0x7f050049
 int id timePicker1 0x7f050059

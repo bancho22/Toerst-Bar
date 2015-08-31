@@ -20,7 +20,7 @@ public class MultipleDrinksView extends ListActivity {
 	
 	private String category;
 	private HashMap<String, Drink> drinks;
-	ArrayList<String> drinkNamesAndPrice;
+	ArrayList<String> drinksDisplayInfo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class MultipleDrinksView extends ListActivity {
 		Bundle bundle = getIntent().getExtras();
 		category = bundle.getString("category");
 		drinks = new HashMap<String, Drink>();
-		drinkNamesAndPrice = new ArrayList<String>();
+		drinksDisplayInfo = new ArrayList<String>();
 		setTitle(category);
 		
 //		if(category.equals("Fadøl")){
@@ -53,21 +53,23 @@ public class MultipleDrinksView extends ListActivity {
 		data.createDatabase();
 		data.open();
 		for(Drink d : data.getMultipleDrinks(category)){
-			drinks.put(d.getDrinkName(), d);
-			drinkNamesAndPrice.add(d.getDrinkName() + "\n" + d.getPrice() + " kr.");
+			String drinkDisplayInfo = d.getDrinkName() + "\n" + d.getPrice() + " kr.";
+			drinks.put(drinkDisplayInfo, d);
+			drinksDisplayInfo.add(drinkDisplayInfo);
 		}
+		data.close();
 		
 		getListView().setBackgroundResource(R.drawable.wood);
-		setListAdapter(new ArrayAdapter<String>(MultipleDrinksView.this, R.layout.my_text_for_list_activity, drinkNamesAndPrice));
+		setListAdapter(new ArrayAdapter<String>(MultipleDrinksView.this, R.layout.my_text_for_list_activity, drinksDisplayInfo));
 	}
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		String drink = drinkNamesAndPrice.get(position);
+		String selectedStr = drinksDisplayInfo.get(position);
+		String drinkName = drinks.get(selectedStr).getDrinkName();
 		Bundle bundle = new Bundle();
-		bundle.putString("drink", drink);
-		bundle.putString("category", category);
+		bundle.putString("drinkName", drinkName);
 		Intent intent = new Intent("com.bani.toerstbar.menu.SINGLEDRINK");
 		intent.putExtras(bundle);
 		startActivity(intent);

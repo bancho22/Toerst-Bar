@@ -10,7 +10,9 @@ public class Drink {
 	private int price;
 	private ArrayList<Ingredient> ings;
 	
-	
+	public Drink(){
+		ings = new ArrayList<Ingredient>();
+	}
 	
 	public Drink(int id, String drinkName, String category, int price,
 			ArrayList<Ingredient> ings) {
