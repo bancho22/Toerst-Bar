@@ -1,78 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/wood"
-    android:orientation="vertical" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
 
-    <Button
-        android:id="@+id/sendEmail"
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/wood"
+        android:orientation="vertical" >
+        
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:text="Full Name:"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_weight="1"
+            android:hint="enter name here" />
+    </TableRow>
+    
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:text="Time: "
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TimePicker
+        android:id="@+id/timePicker1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"
-        android:textSize="30sp" 
-        android:text="Send E-Mail" />
+        android:layout_weight="1" />
+    </TableRow>
 
-    <TextView
-        android:id="@+id/TextView02"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:text="Preferred Area"
-        android:textColor="@android:color/black"
-        android:textSize="30sp" />
+        
+    </TableLayout>
 
-    <Spinner
-        android:id="@+id/area"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/TextView02"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:id="@+id/dateFromBefore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/area"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="Number of People"
-        android:textColor="@android:color/black"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/TextView01"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignRight="@+id/dateFromBefore"
-        android:text="Date"
-        android:textColor="@android:color/black"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/dateFromBefore"
-        android:layout_below="@+id/dateFromBefore"
-        android:layout_marginTop="51dp"
-        android:text="Time"
-        android:textColor="@android:color/black"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/sendEmail"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="34dp"
-        android:text="TextView" />
-
-</RelativeLayout>
+</ScrollView>

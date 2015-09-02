@@ -15,13 +15,7 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
-public class BookTable extends Activity implements OnItemSelectedListener {
-
-	private Button sendEmail;
-	private Spinner area;
-	private String[] allAreas;
-	private String preferredArea;
-	private TextView test;
+public class BookTable extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,31 +26,33 @@ public class BookTable extends Activity implements OnItemSelectedListener {
 	}
 
 	private void init() {
-		area = (Spinner) findViewById(R.id.area);
-		test = (TextView) findViewById(R.id.test);
-		allAreas = new String[3];
-		allAreas[0] = "Basement";
-		allAreas[1] = "Big Bar";
-		allAreas[2] = "Small Bar";
-		preferredArea = allAreas[0];
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.my_text_for_spinner, allAreas);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		area.setAdapter(adapter);
-		area.setOnItemSelectedListener(this);
-		test.setText(preferredArea);
-	}
-
-	@Override
-	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-			long arg3) {
-		preferredArea = allAreas[arg2];
-		test.setText(preferredArea);
-	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
 		
+		
+//		area = (Spinner) findViewById(R.id.area);
+//		test = (TextView) findViewById(R.id.test);
+//		allAreas = new String[3];
+//		allAreas[0] = "Basement";
+//		allAreas[1] = "Big Bar";
+//		allAreas[2] = "Small Bar";
+//		preferredArea = allAreas[0];
+//		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.my_text_for_spinner, allAreas);
+//		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//		area.setAdapter(adapter);
+//		area.setOnItemSelectedListener(this);
+//		test.setText(preferredArea);
 	}
+
+//	@Override
+//	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+//			long arg3) {
+//		preferredArea = allAreas[arg2];
+//		test.setText(preferredArea);
+//	}
+//
+//	@Override
+//	public void onNothingSelected(AdapterView<?> arg0) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 }

@@ -9,8 +9,10 @@ import com.bani.toerstbar.db.DataAdapter;
 import com.bani.toerstbar.entity.Drink;
 import com.bani.toerstbar.entity.Ingredient;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 public class SingleDrinkView extends Activity {
@@ -43,6 +45,9 @@ public class SingleDrinkView extends Activity {
 		drink = data.getSingleDrink(drinkName);
 		data.close();
 		
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		
 		setTitle(drink.getDrinkName());
 		
 		this.drinkName.setText(drink.getDrinkName());
@@ -56,5 +61,14 @@ public class SingleDrinkView extends Activity {
 			ingTit.setVisibility(TextView.GONE);
 		}
 		price.setText(drink.getPrice() + " kr.");
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if(id == android.R.id.home){
+			finish();
+		}
+		return true;
 	}
 }

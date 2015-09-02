@@ -7,10 +7,12 @@ import com.bani.toerstbar.R.drawable;
 import com.bani.toerstbar.R.layout;
 import com.bani.toerstbar.db.DataAdapter;
 
+import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -29,19 +31,15 @@ public class MenuCategories extends ListActivity {
 	
 	private void init() {
 		categories = new ArrayList<String>();
-//		categories.add("Fadøl");
-//		categories.add("Flaskeøl");
-//		categories.add("Kæmpe Cocktails");
-//		
-//		for (int i = 4; i < 20; i++){
-//			categories.add("category " + i);
-//		}
 		
 		DataAdapter data = new DataAdapter(this);
 		data.createDatabase();
 		data.open();
 		categories = data.getCategories();
 		data.close();
+		
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		
 		getListView().setBackgroundResource(R.drawable.wood);
 		setListAdapter(new ArrayAdapter<String>(MenuCategories.this, R.layout.my_text_for_list_activity, categories));
@@ -57,6 +55,15 @@ public class MenuCategories extends ListActivity {
 		Intent intent = new Intent("com.bani.toerstbar.menu.MULTIPLEDRINKS");
 		intent.putExtras(bundle);
 		startActivity(intent);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if(id == android.R.id.home){
+			finish();
+		}
+		return true;
 	}
 	
 	

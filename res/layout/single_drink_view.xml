@@ -5,7 +5,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/wood"
         android:orientation="vertical" >
 
@@ -17,7 +17,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="42dp"
             android:text="Drink Name"
-            android:textSize="30sp"
+            android:textSize="35sp"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
@@ -38,8 +38,9 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/TextViewI"
             android:layout_below="@+id/TextViewI"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="25dp"
             android:text="\u2022 ing1\n\u2022 ing2\n\u2022 ing3"
+            android:textSize="30sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -61,9 +62,9 @@
             android:layout_below="@+id/TextViewP"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:text="Price"
-            android:textSize="30sp"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:text="xx kr."
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="35sp" />
        
     </RelativeLayout>
 
