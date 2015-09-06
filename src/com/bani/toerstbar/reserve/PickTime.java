@@ -4,16 +4,18 @@ import java.util.HashMap;
 
 import com.bani.toerstbar.R;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TimePicker;
 import android.widget.TimePicker.OnTimeChangedListener;
 
-public class PickTime extends Activity implements OnTimeChangedListener, OnClickListener {
+public class PickTime extends Activity implements OnTimeChangedListener, OnClickListener, NamingContract {
 	
 	private HashMap<String, String> resInfo;
 	private TimePicker timePicker;
@@ -28,18 +30,31 @@ public class PickTime extends Activity implements OnTimeChangedListener, OnClick
 
 	private void init() {
 		Bundle extras = getIntent().getExtras();
-		resInfo = (HashMap<String, String>) extras.getSerializable("resInfo");
+		resInfo = (HashMap<String, String>) extras.getSerializable(RESV_INFO);
+		
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		
 		timePicker = (TimePicker) findViewById(R.id.timePicker1);
 		timePicker.setIs24HourView(true);
 		timePicker.setOnTimeChangedListener(this);
-		timePicker.setCurrentHour(21);
-		timePicker.setCurrentMinute(0);
+		
+		if(resInfo.get(TIME) != null){
+			String time = resInfo.get(TIME);
+			String[] splitted = time.split(":");
+			int hour = Integer.parseInt(splitted[0]);
+			int minute = Integer.parseInt(splitted[1]);
+			timePicker.setCurrentHour(hour);
+			timePicker.setCurrentMinute(minute);
+		}else{
+			timePicker.setCurrentHour(21);
+			timePicker.setCurrentMinute(0);
+		}
 		
 		next = (Button) findViewById(R.id.next);
 		next.setOnClickListener(this);
 		
-		resInfo.put("time", retrieveTimeFromPicker());
+		resInfo.put(TIME, retrieveTimeFromPicker());
 	}
 
 	private String retrieveTimeFromPicker() {
@@ -71,16 +86,35 @@ public class PickTime extends Activity implements OnTimeChangedListener, OnClick
 
 	@Override
 	public void onTimeChanged(TimePicker arg0, int arg1, int arg2) {
-		resInfo.put("time", retrieveTimeFromPicker());
+		resInfo.put(RESV_INFO, retrieveTimeFromPicker());
 	}
 
 	@Override
 	public void onClick(View arg0) {
 		Intent intent = new Intent("com.bani.toerstbar.reserve.NAME_COMMENTS");
 		Bundle extras = new Bundle();
-		extras.putSerializable("resInfo", resInfo);
+		extras.putSerializable(RESV_INFO, resInfo);
 		intent.putExtras(extras);
 		startActivity(intent);
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		finish();
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if(id == android.R.id.home){
+			Intent intent = new Intent("com.bani.toerstbar.reserve.PICK_DATE");
+			Bundle extras = new Bundle();
+			extras.putSerializable(RESV_INFO, resInfo);
+			intent.putExtras(extras);
+			startActivity(intent);
+		}
+		return true;
 	}
 	
 }

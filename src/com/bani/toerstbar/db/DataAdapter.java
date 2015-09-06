@@ -12,7 +12,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-public class DataAdapter {
+public class DataAdapter implements DB_Contract {
 	protected static final String TAG = "DataAdapter";
 
 	private final Context mContext;
@@ -53,16 +53,16 @@ public class DataAdapter {
 	public ArrayList<String> getCategories() {
 		try {
 			ArrayList<String> categories = new ArrayList<String>();
-			String sql = "SELECT DISTINCT Category FROM Drink";
+			String sql = "SELECT DISTINCT " + CATEGORY_COLUMN + " FROM " + DRINK_TABLE;
 
 			Cursor mCur = mDb.rawQuery(sql, null);
 
 			if (mCur != null) {
 				mCur.moveToFirst();
-				categories.add(mCur.getString(mCur.getColumnIndex("Category")));
+				categories.add(mCur.getString(mCur.getColumnIndex(CATEGORY_COLUMN)));
 				while (mCur.moveToNext()) {
 					categories.add(mCur.getString(mCur
-							.getColumnIndex("Category")));
+							.getColumnIndex(CATEGORY_COLUMN)));
 				}
 			}
 			return categories;
@@ -75,17 +75,17 @@ public class DataAdapter {
 	public ArrayList<Drink> getMultipleDrinks(String category) {
 		try {
 			ArrayList<Drink> drinks = new ArrayList<Drink>();
-			String sql = "SELECT * FROM Drink WHERE Category = '" + category
+			String sql = "SELECT * FROM " + DRINK_TABLE + " WHERE " + CATEGORY_COLUMN + " = '" + category
 					+ "'";
 
 			Cursor mCur = mDb.rawQuery(sql, null);
 
 			if (mCur != null) {
 				while (mCur.moveToNext()) {
-					int id = mCur.getInt(mCur.getColumnIndex("_id"));
+					int id = mCur.getInt(mCur.getColumnIndex(ID_COLUMN));
 					String drinkName = mCur.getString(mCur
-							.getColumnIndex("DrinkName"));
-					int price = mCur.getInt(mCur.getColumnIndex("Price"));
+							.getColumnIndex(DRINK_NAME_COLUMN));
+					int price = mCur.getInt(mCur.getColumnIndex(PRICE_COLUMN));
 					ArrayList<Ingredient> ings = getDrinkIngredients(id);
 
 					drinks.add(new Drink(id, drinkName, category, price, ings));
@@ -103,13 +103,13 @@ public class DataAdapter {
 		try{
 			Drink d = new Drink();
 			
-			String sql = "SELECT * FROM Drink WHERE DrinkName = '" + drinkName + "'";
+			String sql = "SELECT * FROM " + DRINK_TABLE + " WHERE " + DRINK_NAME_COLUMN + " = '" + drinkName + "'";
 			Cursor mCur = mDb.rawQuery(sql, null);
 			
 			if(mCur != null && mCur.moveToFirst()){
-				int id = mCur.getInt(mCur.getColumnIndex("_id"));
-				String category = mCur.getString(mCur.getColumnIndex("Category"));
-				int price = mCur.getInt(mCur.getColumnIndex("Price"));
+				int id = mCur.getInt(mCur.getColumnIndex(ID_COLUMN));
+				String category = mCur.getString(mCur.getColumnIndex(CATEGORY_COLUMN));
+				int price = mCur.getInt(mCur.getColumnIndex(PRICE_COLUMN));
 				ArrayList<Ingredient> ings = getDrinkIngredients(id);
 				
 				return new Drink(id, drinkName, category, price, ings);
@@ -126,16 +126,16 @@ public class DataAdapter {
 	private ArrayList<Ingredient> getDrinkIngredients(int drinkID) {
 		try {
 			ArrayList<Ingredient> ings = new ArrayList<Ingredient>();
-			String sql = "SELECT IngredientID FROM Mix WHERE DrinkID = '"
+			String sql = "SELECT " + INGREDIENT_ID_COLUMN + " FROM " + MIX_TABLE + " WHERE " + DRINK_ID_COLUMN + " = '"
 					+ drinkID + "'";
 
 			Cursor mCur = mDb.rawQuery(sql, null);
 
 			if (mCur != null && mCur.moveToFirst()) {
-				int id = mCur.getInt(mCur.getColumnIndex("IngredientID"));
+				int id = mCur.getInt(mCur.getColumnIndex(INGREDIENT_ID_COLUMN));
 				ings.add(findIngredientById(id));
 				while (mCur.moveToNext()) {
-					id = mCur.getInt(mCur.getColumnIndex("IngredientID"));
+					id = mCur.getInt(mCur.getColumnIndex(INGREDIENT_ID_COLUMN));
 					ings.add(findIngredientById(id));
 				}
 			}
@@ -148,13 +148,13 @@ public class DataAdapter {
 
 	private Ingredient findIngredientById(int ingID) {
 		try {
-			String sql = "SELECT IngName FROM Ingredient WHERE _id = '"
+			String sql = "SELECT " + INGREDIENT_NAME_COLUMN + " FROM " + INGREDIENT_TABLE + " WHERE " + ID_COLUMN + " = '"
 					+ ingID + "'";
 			
 			Cursor mCur = mDb.rawQuery(sql, null);
 			
 			if(mCur != null && mCur.moveToFirst()){
-				String ingName = mCur.getString(mCur.getColumnIndex("IngName"));
+				String ingName = mCur.getString(mCur.getColumnIndex(INGREDIENT_NAME_COLUMN));
 				return new Ingredient(ingID, ingName);
 			}
 			
