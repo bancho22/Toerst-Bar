@@ -15,6 +15,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	//private String[] appFeatures;
 	private Button viewMenu;
 	private Button bookTable;
+	private Button winShot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     	viewMenu.setOnClickListener(this);
     	bookTable = (Button) findViewById(R.id.bookTable);
 		bookTable.setOnClickListener(this);
+		winShot = (Button) findViewById(R.id.winShot);
+		winShot.setOnClickListener(this);
 	}
 
 	@Override
@@ -74,6 +77,9 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 			case R.id.bookTable:
 				//startActivity(new Intent("com.bani.toerstbar.reserve.BOOKTABLE"));
 				startActivity(new Intent("com.bani.toerstbar.reserve.PICK_AREA"));
+				break;
+			case R.id.winShot:
+				startActivity(new Intent("com.bani.toerstbar.quiz.QUESTION_VIEW"));
 				break;
 		}
 	}

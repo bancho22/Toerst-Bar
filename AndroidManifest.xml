@@ -7,6 +7,8 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="21" />
+    
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -128,6 +130,26 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.bani.toerstbar.reserve.FINISH_RESERVE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name="com.bani.toerstbar.quiz.QuestionView"
+            android:label="Win a Free Shot"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.bani.toerstbar.quiz.QUESTION_VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name="com.bani.toerstbar.quiz.AnswerView"
+            android:label="Result"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.bani.toerstbar.quiz.ANSWER_VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

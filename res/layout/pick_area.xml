@@ -27,7 +27,6 @@
         android:layout_marginTop="33dp"
         android:layout_marginRight="27dp"
         android:text="Please select a preferred area..."
-        android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="30sp" />
 
