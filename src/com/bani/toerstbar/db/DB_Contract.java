@@ -14,6 +14,7 @@ public interface DB_Contract {
 	public static final String DRINK_NAME_COLUMN = "DrinkName";
 	public static final String CATEGORY_COLUMN = "Category";
 	public static final String PRICE_COLUMN = "Price";
+	public static final String DESC_COLUMN = "Description";
 	
 	//column(s) in Ingredient table
 	public static final String INGREDIENT_NAME_COLUMN = "IngName";

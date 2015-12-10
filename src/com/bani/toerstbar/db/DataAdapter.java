@@ -86,9 +86,10 @@ public class DataAdapter implements DB_Contract {
 					String drinkName = mCur.getString(mCur
 							.getColumnIndex(DRINK_NAME_COLUMN));
 					int price = mCur.getInt(mCur.getColumnIndex(PRICE_COLUMN));
+					String desc = mCur.getString(mCur.getColumnIndex(DESC_COLUMN));
 					ArrayList<Ingredient> ings = getDrinkIngredients(id);
 
-					drinks.add(new Drink(id, drinkName, category, price, ings));
+					drinks.add(new Drink(id, drinkName, category, price, desc, ings));
 				}
 			}
 			return drinks;
@@ -110,9 +111,10 @@ public class DataAdapter implements DB_Contract {
 				int id = mCur.getInt(mCur.getColumnIndex(ID_COLUMN));
 				String category = mCur.getString(mCur.getColumnIndex(CATEGORY_COLUMN));
 				int price = mCur.getInt(mCur.getColumnIndex(PRICE_COLUMN));
+				String desc = mCur.getString(mCur.getColumnIndex(DESC_COLUMN));
 				ArrayList<Ingredient> ings = getDrinkIngredients(id);
 				
-				return new Drink(id, drinkName, category, price, ings);
+				return new Drink(id, drinkName, category, price, desc, ings);
 			}
 			
 			return d;

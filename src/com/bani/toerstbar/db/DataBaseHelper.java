@@ -17,13 +17,13 @@ public class DataBaseHelper extends SQLiteOpenHelper
 private static String TAG = "DataBaseHelper"; // Tag just for the LogCat window
 //destination path (location) of our database on device
 private static String DB_PATH = ""; 
-private static String DB_NAME ="MenuData.db";// Database name
+private static String DB_NAME ="MenuDataN.db";// Database name
 private SQLiteDatabase mDataBase; 
 private final Context mContext;
 
 public DataBaseHelper(Context context) 
 {
-    super(context, DB_NAME, null, 1);// 1? its Database Version
+    super(context, DB_NAME, null, 2);// 1? its Database Version
     if(android.os.Build.VERSION.SDK_INT >= 17){
        DB_PATH = context.getApplicationInfo().dataDir + "/databases/";         
     }

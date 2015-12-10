@@ -1,21 +1,41 @@
 package com.bani.toerstbar;
 
+import java.util.concurrent.TimeUnit;
+
+import com.bani.toerstbar.quiz.RequestHandler;
+import com.google.gson.JsonObject;
+
 import android.content.Intent;
+import android.graphics.Color;
+import android.opengl.Visibility;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.provider.Settings.Secure;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Layout.Alignment;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity implements OnClickListener {
 	
-	//private String[] appFeatures;
 	private Button viewMenu;
 	private Button bookTable;
 	private Button winShot;
+	private TextView timerTV, info;
+	private JsonObject object;
+	//private int secondsLeft;
+	private int color;
+	private RequestHandler rh;
+	private String android_id;
+	private MyCount count;
+	private ProgressBar loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,20 +45,23 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         
     }
 
-    private void initialize() {
-    	/*        ListView list = (ListView) findViewById(R.id.listView1);
-        appFeatures = new String[2];
-        appFeatures[0] = "View Menu";
-        appFeatures[1] = "Book a Table";
-        list.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, appFeatures));        
-    	 */
-		
+    private void initialize() {		
     	viewMenu = (Button) findViewById(R.id.viewMenu);
     	viewMenu.setOnClickListener(this);
     	bookTable = (Button) findViewById(R.id.bookTable);
 		bookTable.setOnClickListener(this);
 		winShot = (Button) findViewById(R.id.winShot);
-		winShot.setOnClickListener(this);
+		winShot.setVisibility(View.INVISIBLE);
+		timerTV = (TextView) findViewById(R.id.timer);
+		timerTV.setVisibility(View.INVISIBLE);
+		loading = (ProgressBar) findViewById(R.id.loading);
+		info = (TextView) findViewById(R.id.info);
+		info.setVisibility(View.INVISIBLE);
+		info.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+		
+		android_id = Secure.getString(getContentResolver(), Secure.ANDROID_ID);
+		rh = new RequestHandler(this, null);
+		rh.execute(android_id);
 	}
 
 	@Override
@@ -59,28 +82,124 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         }
         return super.onOptionsItemSelected(item);
     }
+    
+    @Override
+    protected void onResume() {
+    	super.onResume();
+    	winShot.setVisibility(View.INVISIBLE);
+    	timerTV.setVisibility(View.INVISIBLE);
+    	info.setVisibility(View.INVISIBLE);
+    	loading.setVisibility(View.VISIBLE);
+    	rh = new RequestHandler(this, null);
+    	rh.execute(android_id);
+    }
 
 	@Override
 	public void onClick(View v) {
 		int id = v.getId();
+		Intent intent;
+		Bundle extras;
 		switch(id){
 			case R.id.viewMenu:
-/*				try {
-					Class menuC = Class.forName("com.example.myapp.MenuCategories");
-					Intent i = new Intent(this, menuC);
-					startActivity(i);
-				} catch (ClassNotFoundException e) {
-					e.printStackTrace();
-				}*/
 				startActivity(new Intent("com.bani.toerstbar.menu.MENUCATEGORIES"));
 				break;
 			case R.id.bookTable:
-				//startActivity(new Intent("com.bani.toerstbar.reserve.BOOKTABLE"));
 				startActivity(new Intent("com.bani.toerstbar.reserve.PICK_AREA"));
 				break;
 			case R.id.winShot:
-				startActivity(new Intent("com.bani.toerstbar.quiz.QUESTION_VIEW"));
+				intent = new Intent("com.bani.toerstbar.quiz.QUESTION_VIEW");
+				extras = new Bundle();
+				extras.putString("object", object.toString());
+				intent.putExtras(extras);
+				startActivity(intent);
+				break;
+			case R.id.timer:
+				intent = new Intent("com.bani.toerstbar.quiz.TIMER_VIEW");
+				extras = new Bundle();
+				extras.putInt("color", color);
+				//extras.putInt("secondsLeft", secondsLeft);
+				extras.putBoolean("justAnswered", false);
+				intent.putExtras(extras);
+				startActivity(intent);
 				break;
 		}
 	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if(count != null){
+			//count.cancel();
+		}
+	}
+	
+	public void initTimer(JsonObject object){
+		timerTV.setVisibility(View.VISIBLE);
+		winShot.setVisibility(View.INVISIBLE);
+		loading.setVisibility(View.INVISIBLE);
+		timerTV.setClickable(true);
+		timerTV.setOnClickListener(this);
+		this.object = object;
+		Seconds.secondsLeft = object.get("timeLeft").getAsInt();
+		String untilWhat = object.get("timeLeftUntil").getAsString();
+		if(untilWhat.equals("becomesAvailable")){
+			timerTV.setTextColor(Color.RED);
+			color = Color.RED;
+			info.setText("Time left before your shot becomes available:");
+			info.setVisibility(View.VISIBLE);
+		}
+		else if(untilWhat.equals("expires")){
+			timerTV.setTextColor(Color.GREEN);
+			color = Color.GREEN;
+			info.setText("There is a shot waiting for you at the bar right now");
+			info.setVisibility(View.VISIBLE);
+		}
+		count = new MyCount(Seconds.secondsLeft * 1000, 1000);
+		count.start();
+	}
+	
+	
+	public void initWinButton(JsonObject object){
+		winShot.setVisibility(View.VISIBLE);
+		timerTV.setVisibility(View.INVISIBLE);
+		loading.setVisibility(View.INVISIBLE);
+		info.setText("Answer a question and win a free shot!");
+		info.setVisibility(View.VISIBLE);
+		winShot.setOnClickListener(this);
+		this.object = object;
+	}
+	
+	public void initFail(){
+		timerTV.setVisibility(View.INVISIBLE);
+		winShot.setVisibility(View.INVISIBLE);
+		loading.setVisibility(View.INVISIBLE);
+		info.setText("Can't connect to server");
+		info.setVisibility(View.VISIBLE);
+	}
+	
+	
+public class MyCount extends CountDownTimer{
+		
+        public MyCount(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onFinish() {
+            timerTV.setText("00:00:00");
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+        	String displayValue = String.format("%02d:%02d:%02d",
+        			TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
+        			TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - 
+        			TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+        		    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - 
+        		    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))
+        		);
+        	timerTV.setText(displayValue);
+        	Seconds.secondsLeft = (int) millisUntilFinished / 1000;
+        }
+    }
 }

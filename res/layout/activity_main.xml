@@ -14,11 +14,9 @@
         android:id="@+id/viewMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/bookTable"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/bookTable"
-        android:layout_marginBottom="118dp"
-        android:text="View Menu"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="18dp"
+        android:text="M"
         android:textSize="33sp" />
 
     <Button
@@ -26,19 +24,52 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:text="Win a Free Shot"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
+        android:text="Go to Quiz"
         android:textSize="33sp" />
+
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/winShot"
+        android:layout_centerHorizontal="true"
+        android:text="00:00:00"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="50sp" />
 
     <Button
         android:id="@+id/bookTable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/winShot"
-        android:layout_alignLeft="@+id/winShot"
-        android:layout_alignRight="@+id/winShot"
-        android:text="Book a Table"
+        android:layout_alignBaseline="@+id/viewMenu"
+        android:layout_alignBottom="@+id/viewMenu"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="12dp"
+        android:text="T"
         android:textSize="33sp" />
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="120dp"
+        android:layout_toLeftOf="@+id/bookTable"
+        android:layout_toRightOf="@+id/viewMenu"
+        android:text="Answer a question and win a free shot!"
+        android:textColor="@android:color/black"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp" />
 
 </RelativeLayout>

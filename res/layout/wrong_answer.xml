@@ -2,19 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/wood" >
 
     <TextView
-        android:id="@+id/result"
+        android:id="@+id/failMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="result"
+        android:layout_marginTop="48dp"
+        android:text="Sorry, the answer you gave appears to be incorret."
+        android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="30sp" />
-
+    
     <Button
         android:id="@+id/backToHome"
         android:layout_width="wrap_content"
@@ -23,5 +25,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="70dp"
         android:text="Back to Home Screen" />
+
+    <Button
+        android:id="@+id/tryAgain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/backToHome"
+        android:layout_alignLeft="@+id/backToHome"
+        android:layout_alignRight="@+id/backToHome"
+        android:layout_marginBottom="24dp"
+        android:text="Try again" />
 
 </RelativeLayout>

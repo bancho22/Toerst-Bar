@@ -19,6 +19,7 @@ public class SingleDrinkView extends Activity {
 
 	private Drink drink;
 	private TextView drinkName;
+	private TextView desc;
 	private TextView ings;
 	private TextView price;
 	private TextView ingTit;
@@ -32,6 +33,7 @@ public class SingleDrinkView extends Activity {
 
 	private void init() {
 		drinkName = (TextView) findViewById(R.id.drinkName);
+		desc = (TextView) findViewById(R.id.desc);
 		ings = (TextView) findViewById(R.id.ings);
 		price = (TextView) findViewById(R.id.price);
 		ingTit = (TextView) findViewById(R.id.TextViewI);
@@ -51,6 +53,7 @@ public class SingleDrinkView extends Activity {
 		setTitle(drink.getDrinkName());
 		
 		this.drinkName.setText(drink.getDrinkName());
+		desc.setText(drink.getDesc());
 		String ings = "";
 		for (Ingredient i : drink.getIngs()) {
 			ings += "\u2022 " + i.getIngName() + "\n";

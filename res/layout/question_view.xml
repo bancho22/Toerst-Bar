@@ -72,4 +72,23 @@
         android:text="Answer"
         android:textSize="25sp" />
 
+    <TextView
+        android:id="@+id/sthWentWrong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dp"
+        android:text="Something went wrong!"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ProgressBar
+        android:id="@+id/loading1"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/answerBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="22dp" />
+
 </RelativeLayout>

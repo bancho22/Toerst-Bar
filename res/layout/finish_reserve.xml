@@ -32,7 +32,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/sthWentWrong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/area"
@@ -47,8 +47,8 @@
             android:id="@+id/numGuests"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView2"
-            android:layout_below="@+id/textView2"
+            android:layout_alignLeft="@+id/sthWentWrong"
+            android:layout_below="@+id/sthWentWrong"
             android:layout_marginTop="15dp"
             android:text="TextView"
             android:textSize="20sp" />

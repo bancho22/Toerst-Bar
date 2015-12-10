@@ -8,19 +8,21 @@ public class Drink {
 	private String drinkName;
 	private String category;
 	private int price;
+	private String desc;
 	private ArrayList<Ingredient> ings;
 	
 	public Drink(){
 		ings = new ArrayList<Ingredient>();
 	}
 	
-	public Drink(int id, String drinkName, String category, int price,
+	public Drink(int id, String drinkName, String category, int price, String desc,
 			ArrayList<Ingredient> ings) {
 		super();
 		this.id = id;
 		this.drinkName = drinkName;
 		this.category = category;
 		this.price = price;
+		this.desc = desc;
 		this.ings = ings;
 	}
 	
@@ -57,6 +59,14 @@ public class Drink {
 	
 	public void addIngredient(Ingredient ing){
 		ings.add(ing);
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 	
 }

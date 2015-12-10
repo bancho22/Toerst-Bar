@@ -21,18 +21,6 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/TextViewI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/drinkName"
-            android:layout_marginLeft="26dp"
-            android:layout_marginTop="22dp"
-            android:text="Ingredients"
-            android:textSize="25sp"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
             android:id="@+id/ings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,27 +32,38 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
-            android:id="@+id/TextViewP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="26dp"
-            android:layout_below="@+id/ings"
-            android:layout_marginTop="33dp"
-            android:text="Price"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="25sp" />
-
-        <TextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/TextViewP"
+            android:layout_below="@+id/ings"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:text="xx kr."
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/TextViewI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/desc"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="163dp"
+            android:text="Ingredients"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/TextViewI"
+            android:layout_below="@+id/drinkName"
+            android:layout_marginTop="25dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="20sp"
+            android:text="desc" />
        
     </RelativeLayout>
 
