@@ -11,20 +11,24 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.provider.Settings.Secure;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Layout;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
 public class TimerView extends ActionBarActivity implements OnClickListener {
 	
-	private TextView infoTextTV, timerTV, dontSlideTV;
+	private TextView infoTextTV, timerTV, sliding;// dontSlideTV;
 	private Button backToHome;
 	private SeekBar claimSb;
+	private ProgressBar loading3;
+	private View slideLayout;
 	//private int secondsLeft;
 
 	@Override
@@ -40,11 +44,15 @@ public class TimerView extends ActionBarActivity implements OnClickListener {
 		//secondsLeft = extras.getInt("secondsLeft");
 		boolean justAnswered = extras.getBoolean("justAnswered");
 		
+		slideLayout = findViewById(R.id.slideLayout);
 		infoTextTV = (TextView) findViewById(R.id.infoText);
 		timerTV = (TextView) findViewById(R.id.timer);
-		dontSlideTV = (TextView) findViewById(R.id.dontslide);
+		//dontSlideTV = (TextView) findViewById(R.id.dontslide);
+		sliding = (TextView) findViewById(R.id.sliding);
 		claimSb =(SeekBar) findViewById(R.id.claim);
 		backToHome = (Button) findViewById(R.id.backToHome);
+		loading3 = (ProgressBar) findViewById(R.id.loading3);
+		loading3.setVisibility(View.INVISIBLE);
 		
 		timerTV.setTextColor(color);
 		backToHome.setOnClickListener(this);
@@ -53,8 +61,9 @@ public class TimerView extends ActionBarActivity implements OnClickListener {
 		countdown.start();
 		
 		if(color == Color.RED){
-			dontSlideTV.setVisibility(View.INVISIBLE);
+			//dontSlideTV.setVisibility(View.INVISIBLE);
 			claimSb.setVisibility(View.INVISIBLE);
+			slideLayout.setVisibility(View.INVISIBLE);
 			if(justAnswered){
 				infoTextTV.setText("Congratulations, you answered correctly. Your drink will become available in");
 			}
@@ -63,7 +72,7 @@ public class TimerView extends ActionBarActivity implements OnClickListener {
 			}
 		}
 		else{
-			infoTextTV.setText("Show this screen at the bar to claim your drink.\nTime left");
+			infoTextTV.setText("Show this screen at the bar and claim your drink. Time left: ");
 			final DeleteHandler dh = new DeleteHandler(this);
 			claimSb.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
@@ -71,10 +80,14 @@ public class TimerView extends ActionBarActivity implements OnClickListener {
 		        public void onStopTrackingTouch(SeekBar seekBar) {
 
 		            if (seekBar.getProgress() > 95) {
+		            	//claimSb.setVisibility(View.INVISIBLE);
+		            	//dontSlideTV.setVisibility(View.INVISIBLE);
+		            	slideLayout.setVisibility(View.INVISIBLE);
+		            	backToHome.setClickable(false);
+		            	loading3.setVisibility(View.VISIBLE);
 		            	dh.execute(Secure.getString(getContentResolver(), Secure.ANDROID_ID));
 		            } else {
 		            	seekBar.setProgress(0);
-		                seekBar.setThumb(getResources().getDrawable(R.drawable.ic_launcher));
 		            }
 
 		        }
@@ -100,8 +113,11 @@ public class TimerView extends ActionBarActivity implements OnClickListener {
 	
 	public void drinkClaimed(){
 		timerTV.setVisibility(View.INVISIBLE);
-		claimSb.setVisibility(View.INVISIBLE);
-		dontSlideTV.setVisibility(View.INVISIBLE);
+		//claimSb.setVisibility(View.INVISIBLE);
+		//dontSlideTV.setVisibility(View.INVISIBLE);
+		slideLayout.setVisibility(View.INVISIBLE);
+		loading3.setVisibility(View.INVISIBLE);
+		backToHome.setClickable(true);
 		infoTextTV.setText("You have claimed your drink.");
 	}
 	

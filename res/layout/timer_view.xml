@@ -13,7 +13,7 @@
         android:layout_marginBottom="70dp"
         android:text="Back to Home Screen" />
 
-    <SeekBar
+    <!-- <SeekBar
         android:id="@+id/claim"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -24,31 +24,10 @@
         android:clickable="false"
         android:max="100"
         android:progressDrawable="@android:color/transparent"
-        android:thumb="@drawable/ic_launcher" />
+        android:thumb="@drawable/ic_launcher" /> -->
+    
 
-    <TextView
-        android:id="@+id/timer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="110dp"
-        android:text="00:00:00"
-        android:textColor="@android:color/black"
-        android:textSize="40sp" />
-
-    <TextView
-        android:id="@+id/infoText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"
-        android:text="time left to"
-        android:textColor="@android:color/black"
-        android:textSize="20sp" />
-
-    <TextView
+    <!-- <TextView
         android:id="@+id/dontslide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,6 +38,79 @@
         android:layout_marginBottom="14dp"
         android:text="*don&apos;t slide before you&apos;ve claimed your drink"
         android:textColor="@android:color/black"
-        android:textSize="15sp" />
+        android:textSize="15sp" /> -->
+
+    <ProgressBar
+        android:id="@+id/loading3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+    <LinearLayout
+        android:id="@+id/slideLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/background_view_rounded_single"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <TextView
+            android:layout_width="216dp"
+            android:id="@+id/sliding"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Slide to claim"
+            android:textAlignment="center"
+            android:textColor="#fcfcfc"
+            android:textSize="20sp" />
+
+        <SeekBar
+            android:id="@+id/claim"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/progressbar"
+            android:secondaryProgress="0" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="*don&apos;t slide before you&apos;ve claimed your drink"
+            android:textColor="#fcfcfc"
+            android:textAlignment="center"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/infoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="time left to"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/infoText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:text="00:00:00"
+        android:textColor="@android:color/black"
+        android:textSize="40sp" />
 
 </RelativeLayout>

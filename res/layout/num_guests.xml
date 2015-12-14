@@ -5,7 +5,7 @@
     android:background="@drawable/wood" >
 
     <ProgressBar
-        android:id="@+id/progressBar1"
+        android:id="@+id/loading3"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -21,8 +21,8 @@
         android:id="@+id/dateFromBefore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/progressBar1"
-        android:layout_below="@+id/progressBar1"
+        android:layout_alignLeft="@+id/loading3"
+        android:layout_below="@+id/loading3"
         android:layout_marginRight="27dp"
         android:layout_marginTop="33dp"
         android:text="Please choose the number of guests..."

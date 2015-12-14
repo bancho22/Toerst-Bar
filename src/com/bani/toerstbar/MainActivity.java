@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -36,6 +37,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	private String android_id;
 	private MyCount count;
 	private ProgressBar loading;
+	private ImageButton viewMenuImgBtn, bookTableImgBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +50,10 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     private void initialize() {		
     	viewMenu = (Button) findViewById(R.id.viewMenu);
     	viewMenu.setOnClickListener(this);
+    	viewMenu.setVisibility(View.INVISIBLE);
     	bookTable = (Button) findViewById(R.id.bookTable);
 		bookTable.setOnClickListener(this);
+		bookTable.setVisibility(View.INVISIBLE);
 		winShot = (Button) findViewById(R.id.winShot);
 		winShot.setVisibility(View.INVISIBLE);
 		timerTV = (TextView) findViewById(R.id.timer);
@@ -58,6 +62,11 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		info = (TextView) findViewById(R.id.info);
 		info.setVisibility(View.INVISIBLE);
 		info.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+		
+		viewMenuImgBtn = (ImageButton) findViewById(R.id.viewMenuImgBtn);
+		viewMenuImgBtn.setOnClickListener(this);
+		bookTableImgBtn = (ImageButton) findViewById(R.id.bookTableImgBtn);
+		bookTableImgBtn.setOnClickListener(this);
 		
 		android_id = Secure.getString(getContentResolver(), Secure.ANDROID_ID);
 		rh = new RequestHandler(this, null);
@@ -101,9 +110,11 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		Bundle extras;
 		switch(id){
 			case R.id.viewMenu:
+			case R.id.viewMenuImgBtn:
 				startActivity(new Intent("com.bani.toerstbar.menu.MENUCATEGORIES"));
 				break;
 			case R.id.bookTable:
+			case R.id.bookTableImgBtn:
 				startActivity(new Intent("com.bani.toerstbar.reserve.PICK_AREA"));
 				break;
 			case R.id.winShot:
@@ -143,8 +154,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		Seconds.secondsLeft = object.get("timeLeft").getAsInt();
 		String untilWhat = object.get("timeLeftUntil").getAsString();
 		if(untilWhat.equals("becomesAvailable")){
-			timerTV.setTextColor(Color.RED);
-			color = Color.RED;
+			timerTV.setTextColor(Color.parseColor("#960018"));
+			color = Color.RED; //Color.parseColor("#8B0000");
 			info.setText("Time left before your shot becomes available:");
 			info.setVisibility(View.VISIBLE);
 		}

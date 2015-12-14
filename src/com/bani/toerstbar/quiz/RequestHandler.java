@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -38,6 +39,7 @@ public class RequestHandler extends AsyncTask<String, Void, JsonObject> {
 		StringBuilder builder = new StringBuilder();
 		HttpClient client = new DefaultHttpClient();
 		HttpPost httpPost = new HttpPost("http://toerstbar-baniproductions.rhcloud.com/api/quiz/request");
+		//HttpGet httpGet = new HttpGet("http://bani-productions.cloudapp.net/ToerstTesting/api/timer");
 		httpPost.setHeader("Content-type", "application/json");
 		StringEntity entity;
 		JsonObject result;

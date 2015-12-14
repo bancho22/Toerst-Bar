@@ -63,13 +63,27 @@
         android:id="@+id/info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="120dp"
-        android:layout_toLeftOf="@+id/bookTable"
-        android:layout_toRightOf="@+id/viewMenu"
-        android:text="Answer a question and win a free shot!"
-        android:textColor="@android:color/black"
+        android:layout_alignBottom="@+id/loading"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/background_view_rounded_single"
+        android:text="Answer a question and win a free shot!"
+        android:textColor="#fcfcfc"
         android:textSize="20sp" />
+
+    <ImageButton
+        android:id="@+id/bookTableImgBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/table_icon" />
+
+    <ImageButton
+        android:id="@+id/viewMenuImgBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/menu_icon" />
 
 </RelativeLayout>
