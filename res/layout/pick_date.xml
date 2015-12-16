@@ -14,7 +14,7 @@
         android:layout_marginLeft="27dp"
         android:layout_marginRight="27dp"
         android:layout_marginTop="15dp"
-        android:progress="50"
+        android:progress="40"
         android:progressDrawable="@drawable/progress_bar" />
     
     <TextView
@@ -25,10 +25,10 @@
         android:layout_below="@+id/loading3"
         android:layout_marginTop="33dp"
         android:layout_marginRight="27dp"
-        android:text="Please choose the date for the party..."
+        android:text="Please choose the day for the party..."
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="30sp" />
+        android:textSize="20sp" />
 
     <DatePicker
         android:id="@+id/datePicker1"

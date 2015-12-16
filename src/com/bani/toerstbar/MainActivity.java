@@ -44,7 +44,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initialize();
-        
     }
 
     private void initialize() {		
@@ -115,7 +114,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 				break;
 			case R.id.bookTable:
 			case R.id.bookTableImgBtn:
-				startActivity(new Intent("com.bani.toerstbar.reserve.PICK_AREA"));
+				startActivity(new Intent("com.bani.toerstbar.reserve.NUM_GUESTS"));
 				break;
 			case R.id.winShot:
 				intent = new Intent("com.bani.toerstbar.quiz.QUESTION_VIEW");
@@ -155,7 +154,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		String untilWhat = object.get("timeLeftUntil").getAsString();
 		if(untilWhat.equals("becomesAvailable")){
 			timerTV.setTextColor(Color.parseColor("#960018"));
-			color = Color.RED; //Color.parseColor("#8B0000");
+			color = Color.RED;
 			info.setText("Time left before your shot becomes available:");
 			info.setVisibility(View.VISIBLE);
 		}
@@ -198,6 +197,9 @@ public class MyCount extends CountDownTimer{
         @Override
         public void onFinish() {
             timerTV.setText("00:00:00");
+            if(color == Color.RED){
+            	//notification
+            }
         }
 
         @Override

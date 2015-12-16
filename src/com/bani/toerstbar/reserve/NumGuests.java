@@ -29,8 +29,7 @@ public class NumGuests extends Activity implements OnClickListener, OnValueChang
 	}
 
 	private void init() {
-		Bundle extras = getIntent().getExtras();
-		resInfo = (HashMap<String, String>) extras.getSerializable(RESV_INFO);
+		resInfo = new HashMap<String, String>();
 		
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -79,11 +78,7 @@ public class NumGuests extends Activity implements OnClickListener, OnValueChang
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if(id == android.R.id.home){
-			Intent intent = new Intent("com.bani.toerstbar.reserve.PICK_AREA");
-			Bundle extras = new Bundle();
-			extras.putSerializable(RESV_INFO, resInfo);
-			intent.putExtras(extras);
-			startActivity(intent);
+			finish();
 		}
 		return true;
 	}

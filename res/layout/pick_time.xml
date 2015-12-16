@@ -14,7 +14,7 @@
         android:layout_marginLeft="27dp"
         android:layout_marginRight="27dp"
         android:layout_marginTop="15dp"
-        android:progress="67"
+        android:progress="60"
         android:progressDrawable="@drawable/progress_bar" />
     
     <TextView
@@ -25,10 +25,10 @@
         android:layout_below="@+id/loading3"
         android:layout_marginTop="33dp"
         android:layout_marginRight="27dp"
-        android:text="What time will the party start?"
+        android:text="Please choose a time for the party..."
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="30sp" />
+        android:textSize="20sp" />
 
     <TimePicker
         android:id="@+id/timePicker1"

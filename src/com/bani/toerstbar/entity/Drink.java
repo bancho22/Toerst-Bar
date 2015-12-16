@@ -2,6 +2,8 @@ package com.bani.toerstbar.entity;
 
 import java.util.ArrayList;
 
+import android.graphics.Bitmap;
+
 public class Drink {
 
 	private int id;
@@ -9,6 +11,7 @@ public class Drink {
 	private String category;
 	private int price;
 	private String desc;
+	//private Bitmap img;
 	private ArrayList<Ingredient> ings;
 	
 	public Drink(){
@@ -25,6 +28,22 @@ public class Drink {
 		this.desc = desc;
 		this.ings = ings;
 	}
+	
+	/*public Drink(int id, String drinkName, String category, int price, String desc,
+			ArrayList<Ingredient> ings, Bitmap img) {
+		super();
+		this.id = id;
+		this.drinkName = drinkName;
+		this.category = category;
+		this.price = price;
+		this.desc = desc;
+		this.ings = ings;
+		this.img = img;
+	}*/
+	
+	/*public Bitmap getImg(){
+		return img;
+	}*/
 	
 	public int getId() {
 		return id;

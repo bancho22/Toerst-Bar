@@ -10,6 +10,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 public class DataAdapter implements DB_Contract {
@@ -112,8 +114,12 @@ public class DataAdapter implements DB_Contract {
 				String category = mCur.getString(mCur.getColumnIndex(CATEGORY_COLUMN));
 				int price = mCur.getInt(mCur.getColumnIndex(PRICE_COLUMN));
 				String desc = mCur.getString(mCur.getColumnIndex(DESC_COLUMN));
+				//byte[] imgByte = mCur.getBlob(mCur.getColumnIndex(PIC_COLUMN));
+				//Bitmap img = BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
+				
 				ArrayList<Ingredient> ings = getDrinkIngredients(id);
 				
+				//return new Drink(id, drinkName, category, price, desc, ings, img);
 				return new Drink(id, drinkName, category, price, desc, ings);
 			}
 			

@@ -43,27 +43,36 @@
             android:textSize="35sp" />
 
         <TextView
-            android:id="@+id/TextViewI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/desc"
-            android:layout_marginLeft="28dp"
-            android:layout_marginTop="163dp"
-            android:text="Ingredients"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="25sp" />
-
-        <TextView
             android:id="@+id/desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/TextViewI"
             android:layout_below="@+id/drinkName"
             android:layout_marginTop="25dp"
+            android:text="descdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdesc"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="20sp"
-            android:text="desc" />
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_below="@+id/desc"
+            android:layout_centerHorizontal="true"
+            android:layout_width="100dp"
+    		android:layout_height="200dp"
+            android:layout_marginTop="53dp"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/TextViewI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/imageView1"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="68dp"
+            android:text="Ingredients"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="25sp" />
        
     </RelativeLayout>
 

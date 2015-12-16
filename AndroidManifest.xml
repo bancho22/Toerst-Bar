@@ -64,16 +64,6 @@
         </activity>
         
         <activity 
-            android:name="com.bani.toerstbar.reserve.PickArea"
-            android:label="Preferred Area"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="com.bani.toerstbar.reserve.PICK_AREA" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity 
             android:name="com.bani.toerstbar.reserve.NumGuests"
             android:label="Number of Guests"
             android:screenOrientation="portrait">
@@ -109,17 +99,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.bani.toerstbar.reserve.NAME_COMMENTS" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity 
-            android:name="com.bani.toerstbar.popups.NoNameEntered"
-            android:label="Missing Name"
-            android:theme="@android:style/Theme.Dialog"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="com.bani.toerstbar.popups.MISSING_NAME" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

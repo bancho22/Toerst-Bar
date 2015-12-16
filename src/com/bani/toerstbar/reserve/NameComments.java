@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class NameComments extends Activity implements OnClickListener, NamingContract {
 	
@@ -52,12 +53,19 @@ public class NameComments extends Activity implements OnClickListener, NamingCon
 
 	
 	@Override
+	protected void onPause() {
+		super.onPause();
+		finish();
+	}
+	
+	@Override
 	public void onClick(View arg0) {
 		String name = "";
 		name = et_name.getText().toString();
 		if(name.isEmpty()){
-			Intent intent = new Intent("com.bani.toerstbar.popups.MISSING_NAME");
-			startActivity(intent);
+			//Intent intent = new Intent("com.bani.toerstbar.popups.MISSING_NAME");
+			//startActivity(intent);
+			Toast.makeText(this, "Please enter a name", Toast.LENGTH_SHORT).show();
 			return;
 		}
 		resInfo.put(NAME, name);

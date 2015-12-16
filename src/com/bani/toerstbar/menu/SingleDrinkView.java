@@ -1,5 +1,7 @@
 package com.bani.toerstbar.menu;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import com.bani.toerstbar.R;
@@ -11,8 +13,11 @@ import com.bani.toerstbar.entity.Ingredient;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SingleDrinkView extends Activity {
@@ -23,6 +28,7 @@ public class SingleDrinkView extends Activity {
 	private TextView ings;
 	private TextView price;
 	private TextView ingTit;
+	private ImageView imgV;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,7 @@ public class SingleDrinkView extends Activity {
 		ings = (TextView) findViewById(R.id.ings);
 		price = (TextView) findViewById(R.id.price);
 		ingTit = (TextView) findViewById(R.id.TextViewI);
+		imgV = (ImageView) findViewById(R.id.imageView1);
 
 		Bundle bundle = getIntent().getExtras();
 		String drinkName = bundle.getString("drinkName");
@@ -64,6 +71,21 @@ public class SingleDrinkView extends Activity {
 			ingTit.setVisibility(TextView.GONE);
 		}
 		price.setText(drink.getPrice() + " kr.");
+		
+		try {
+			InputStream stream = getAssets().open(drink.getDrinkName() + ".png");
+			Drawable img = Drawable.createFromStream(stream, null);
+			imgV.setImageDrawable(img);
+			stream.close();
+			//getAssets().close();
+		} catch (IOException e) {
+			imgV.setVisibility(View.INVISIBLE);
+			//e.printStackTrace();
+		}
+		
+		/*if(drink.getImg() != null){
+			imgV.setImageBitmap(drink.getImg());
+		}*/
 	}
 	
 	@Override

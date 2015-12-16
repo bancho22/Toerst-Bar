@@ -22,21 +22,11 @@
             android:progressDrawable="@drawable/progress_bar" />
 
         <TextView
-            android:id="@+id/area"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/drinkName"
-            android:layout_below="@+id/drinkName"
-            android:layout_marginTop="16dp"
-            android:text="TextView"
-            android:textSize="20sp" />
-
-        <TextView
             android:id="@+id/sthWentWrong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/area"
-            android:layout_below="@+id/area"
+            android:layout_alignLeft="@+id/rName"
+            android:layout_below="@+id/rName"
             android:layout_marginTop="22dp"
             android:text="Number of guests"
             android:textAlignment="center"
@@ -120,18 +110,6 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/drinkName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/rName"
-            android:layout_below="@+id/rName"
-            android:layout_marginTop="22dp"
-            android:text="Preferred area"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="25sp" />
-
-        <TextView
             android:id="@+id/TextView04"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -162,6 +140,18 @@
             android:layout_marginTop="50dp"
             android:text="Send E-Mail"
             android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/abc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/sendEmail"
+            android:layout_marginTop="52dp"
+            android:text="*once you send an e-mail, it will be reviewed and you will be contacted by us"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
